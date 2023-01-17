@@ -10,7 +10,7 @@
     validatePassword
  } = require('../utils/validators') ;
 
- router.post("./signup" , async (req,res) => {
+ router.post('/signup' , async (req,res) => {
     try{
         const { name , email , password , isSeller }  = req.body ;
 
@@ -25,18 +25,18 @@
             return res.status(400).json({err:"Password validate fails"}) ;
         }
 
-        const hashedPassword = await bcrypt.hash(password);
+        const hashedPassword = await bcrypt.hash(password , 10);
 
         const user = {
             name ,
-            emai ,
+            email ,
             hashedPassword ,
             isSeller
         };
 
         const createdUser  = await User.create(user);
 
-        return res.status(200).json({
+        return res.status(201).json({
             message : `Welcome ${createdUser.name}`, 
 
         });
@@ -44,9 +44,10 @@
 
     }
     catch(e){
+        console.log(">>>>",e);
         return res.status(500).send(e) ;
     }
 
  })
 
- module.exports = routes ;
+ module.exports = router ;
