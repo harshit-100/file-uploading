@@ -17,5 +17,5 @@ const PORT = 1338 ;
 
 app.listen(PORT,()=>{
     console.log('app is running on port:',PORT);
-    connectDB();
+    //connectDB();
 })
