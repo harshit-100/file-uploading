@@ -1,4 +1,4 @@
-const { Sequelize } = require(Sequelize) ;
+const { Sequelize } = require('sequelize') ;
 
 const createDB = new Sequelize('test-db','user','pass',{
     dialect: 'sqlite',
@@ -6,7 +6,7 @@ const createDB = new Sequelize('test-db','user','pass',{
 });
 
 const connectDB = () => {
-    connectDB.sync().then(()=>{
+    createDB.sync().then(()=>{
         console.log('connected to db');
     })
     .catch((e) => {
